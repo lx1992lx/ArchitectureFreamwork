@@ -1,2 +1,2 @@
 # ArchitectureFreamwork
-简介的MVVM架构封装
+简洁的MVVM架构封装
