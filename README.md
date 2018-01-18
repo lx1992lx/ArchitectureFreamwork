@@ -1,7 +1,8 @@
 # ArchitectureFreamwork
 架构整体流程图：<br>
   ![image](https://github.com/lx1992lx/ArchitectureFreamwork/blob/master/demo.jpeg)
-###主要功能
+主要功能
+-----------
 <br>
 项目根据google整合的Architecture架构：<br>
 1.耦合度低<br>
@@ -12,12 +13,14 @@
 4.支持java和kotlin<br>
 5.可进行二次封装<br>
 
-###使用方法
+使用方法
+-----------
 1.将architecturefreamwork的model导入项目中，并在你的项目添加该model的依赖<br>
 2.使Activity和Fragment继承于BaseActivity或BaseFragment,并实现相关的方法<br>
 3.使你的ViewModel继承BaseViewModel<br>
 4.使用@OnDataReceive(Event="xxxx")注解，在ViewModel处理数据改变事件<br>
 5.使用DataCenter.changeData()方法通知数据改变事件<br>
 P.S.详细demo(Kotlin)请见app包下的test1包
-###注意事项
+注意事项
+-----------
 推荐使用LiveData作为Model的承载体
