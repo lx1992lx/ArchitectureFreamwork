@@ -3,8 +3,12 @@
   ![image](https://github.com/lx1992lx/ArchitectureFreamwork/blob/master/demo.jpeg)
   
  <br>
+ 
+ 
 主要功能
 -----------
+
+
 项目根据google整合的Architecture架构：<br>
 1.耦合度低<br>
   每个ViewModel不依赖于特定的View，并且可以做到共享。<br>
