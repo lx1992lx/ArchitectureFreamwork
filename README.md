@@ -1,6 +1,8 @@
 # ArchitectureFreamwork
 架构整体流程图：<br>
   ![image](https://github.com/lx1992lx/ArchitectureFreamwork/blob/master/demo.jpeg)
+  
+ <br>
 主要功能
 -----------
 <br>
@@ -20,7 +22,7 @@
 3.使你的ViewModel继承BaseViewModel<br>
 4.使用@OnDataReceive(Event="xxxx")注解，在ViewModel处理数据改变事件<br>
 5.使用DataCenter.changeData()方法通知数据改变事件<br>
-P.S.详细demo(Kotlin)请见app包下的test1包
+P.S.详细demo(Kotlin)请见app包下的test1包<br>
 注意事项
 -----------
 推荐使用LiveData作为Model的承载体
