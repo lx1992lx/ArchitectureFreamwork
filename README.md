@@ -1,5 +1,5 @@
 # ArchitectureFreamwork
-架构整体流程图：
+架构整体流程图：<br>
   ![image](https://github.com/lx1992lx/ArchitectureFreamwork/blob/master/demo.jpeg)
 ###主要功能
 <br>
