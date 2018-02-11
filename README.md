@@ -31,3 +31,9 @@ P.S.详细demo(Kotlin)请见app包下的test1包<br>
 注意事项
 -----------
 推荐使用LiveData作为Model的承载体
+
+
+<br>
+<br>
+邮箱：1012025958@qq.com
+微信：lx1992lxlx
