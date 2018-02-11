@@ -1,7 +1,4 @@
-package com.yyxk.architectureframework.center.data;
-
-import android.os.Handler;
-import android.os.Looper;
+package com.yyxk.archframeworktest.test2
 
 /**
  * ----------Dragon be here!----------/
@@ -24,29 +21,16 @@ import android.os.Looper;
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
  * 项目名称：ArchFrameworkTest
- * 包名:com.yyxk.architectureframework.center.data
- * 类描述：切换到主线程
+ * 包名:com.yyxk.archframeworktest.test2
+ * 类描述：
  * 创建人：LX
- * 创建时间：2018/1/17 下午1:57
+ * 创建时间：2018/2/5 下午2:35
  * 修改人：LX
- * 修改时间：2018/1/17 下午1:57
+ * 修改时间：2018/2/5 下午2:35
  * 修改备注：
  */
+interface Contract {
+    fun onButtonClick()
 
-public class DataTaskExcuter{
-    private static DataTaskExcuter mDataTaskExcuter;
-    private Handler mHandler=new Handler(Looper.getMainLooper());
-
-    private DataTaskExcuter() {
-    }
-
-    public static DataTaskExcuter getInstance(){
-        if(mDataTaskExcuter==null)
-            mDataTaskExcuter=new DataTaskExcuter();
-        return mDataTaskExcuter;
-    }
-
-    public void postToMainThread(Runnable runnable){
-        mHandler.post(runnable);
-    }
+    fun setActivity(activity: Test2Activity)
 }

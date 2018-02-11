@@ -1,10 +1,9 @@
 package com.yyxk.architectureframework.base;
 
-import android.arch.lifecycle.ViewModelProviders;
+import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,39 +42,31 @@ import com.yyxk.architectureframework.ibase.IBaseView;
 
 public abstract class BaseFragment extends Fragment implements IBaseView {
 
+    private View mLayoutView;
     public abstract void init();
+    private MVVMConect mMVVMConect;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layoutView = LayoutInflater.from(getActivity()).inflate(setLayoutId(), container, false);
+        mLayoutView = LayoutInflater.from(getActivity()).inflate(setLayoutId(), container, false);
+        initMvvmConect();
         init();
-        return layoutView;
+        return mLayoutView;
+    }
+
+    private void initMvvmConect() {
+        mMVVMConect=new MVVMConect();
     }
 
     @Override
     public <T extends BaseViewModel> T getViewModel(Class<T> clz) {
-        T t = ViewModelProviders.of(this).get(clz);
-        getLifecycle().removeObserver(t);
-        getLifecycle().addObserver(t);
-        return t;
+        return mMVVMConect.getViewModel(clz,this);
     }
 
     @Override
     public <T extends BaseViewModel> T getViewModel(Class<T> clz, IBaseView iBaseView) {
-        if (iBaseView instanceof AppCompatActivity) {
-            T t = ViewModelProviders.of((AppCompatActivity) iBaseView).get(clz);
-            getLifecycle().removeObserver(t);
-            getLifecycle().addObserver(t);
-            return t;
-        } else if (iBaseView instanceof Fragment) {
-            T t = ViewModelProviders.of((Fragment) iBaseView).get(clz);
-            getLifecycle().removeObserver(t);
-            getLifecycle().addObserver(t);
-            return t;
-        } else {
-            throw new IllegalArgumentException("the second Argument(IBaseView) must be a AppCompatActivity or a Fragment(support v4)");
-        }
+        return mMVVMConect.getViewModel(clz,iBaseView);
     }
 
     /**
@@ -84,5 +75,20 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
      */
     public String getPageName(){
         return setPageName();
+    }
+
+    public View getLayoutView(){
+        return mLayoutView;
+    }
+
+    @Override
+    public void onDestroy() {
+        mMVVMConect.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public Lifecycle getViewLifecycle() {
+        return getLifecycle();
     }
 }

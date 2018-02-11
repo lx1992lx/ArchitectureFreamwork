@@ -1,7 +1,9 @@
 package com.yyxk.archframeworktest.text1
 
+import android.content.Intent
 import android.os.Bundle
 import com.yyxk.archframeworktest.R
+import com.yyxk.archframeworktest.test2.Test2Activity
 import com.yyxk.architectureframework.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_test1.*
 
@@ -35,7 +37,7 @@ import kotlinx.android.synthetic.main.activity_test1.*
  * 修改备注：
  */
 class Test1Activity: BaseActivity() {
-    lateinit var mViewModel:Test1ViewModel
+    lateinit var mViewModel:Contract
 
     override fun setLayoutId(): Int {
         return R.layout.activity_test1
@@ -48,7 +50,7 @@ class Test1Activity: BaseActivity() {
     override fun init(savedInstanceState:Bundle?) {
         //1.获取ViewModel
         mViewModel=getViewModel(Test1ViewModel::class.java)
-        mViewModel.context=this
+        mViewModel.setContext(this)
         //2.初始化ViewModel中的数据，监听组件交给ViewModel
         mViewModel.createData(this,onDataChange ={textView.text=it?.name})
         //3.将逻辑操作交给ViewModel
@@ -63,6 +65,12 @@ class Test1Activity: BaseActivity() {
         thread_btn.setOnClickListener{
             mViewModel.onThreadClicked()
         }
+
+        start_test2.setOnClickListener {
+            var intent= Intent(this,Test2Activity::class.java)
+            startActivity(intent)
+        }
     }
+
 
 }

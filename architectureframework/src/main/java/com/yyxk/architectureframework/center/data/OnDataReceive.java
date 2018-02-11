@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
  * ━━━━━━神兽出没━━━━━━
  * 项目名称：ArchFrameworkTest
  * 包名:com.yyxk.architectureframework.datacenter
- * 类描述：
+ * 类描述：注解适用于接收DataCenter的changeData()方法发送的消息，Event为标记的事件Tag
  * 创建人：LX
  * 创建时间：2018/1/15 下午3:48
  * 修改人：LX

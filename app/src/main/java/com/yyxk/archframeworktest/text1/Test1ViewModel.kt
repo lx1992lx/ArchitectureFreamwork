@@ -5,10 +5,10 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.content.Context
-import android.widget.Toast
 import com.yyxk.architectureframework.base.BaseViewModel
 import com.yyxk.architectureframework.center.data.DataCenter
 import com.yyxk.architectureframework.center.data.OnDataReceive
+import com.yyxk.architectureframework.center.message.OnMsgReceive
 
 /**
  * ----------Dragon be here!----------/
@@ -41,13 +41,18 @@ import com.yyxk.architectureframework.center.data.OnDataReceive
  */
 class Test1ViewModel : BaseViewModel(), Contract {
 
-    var context: Context? = null
+    private var context: Context?=null
+
+    override fun setContext(context: Context?) {
+        this.context=context
+    }
+
 
     /**
      * 监听创建者（Activity）的生命周期
      */
     override fun onViewStateChanged(source: LifecycleOwner?, event: Lifecycle.Event?) {
-        Toast.makeText(context,"state="+event,Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context,"state="+event,Toast.LENGTH_SHORT).show()
     }
 
 
@@ -104,5 +109,11 @@ class Test1ViewModel : BaseViewModel(), Contract {
         liveTest1Model.postValue(test1Model)
     }
 
+    @OnMsgReceive(Event = "2222")
+    fun receiveTest2Msg(str:String){
+        var test=Test1Model()
+        test.name=str
+        liveTest1Model.postValue(test)
+    }
 
 }

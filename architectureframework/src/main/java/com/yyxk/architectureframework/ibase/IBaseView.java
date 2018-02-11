@@ -1,5 +1,6 @@
 package com.yyxk.architectureframework.ibase;
 
+import android.arch.lifecycle.Lifecycle;
 import android.support.annotation.LayoutRes;
 
 import com.yyxk.architectureframework.base.BaseViewModel;
@@ -35,6 +36,7 @@ import com.yyxk.architectureframework.base.BaseViewModel;
  */
 
 public interface IBaseView{
+    Lifecycle getViewLifecycle();
     //设置布局文件Id
     @LayoutRes int setLayoutId();
     //设置页面名称
@@ -43,4 +45,5 @@ public interface IBaseView{
     <T extends BaseViewModel> T getViewModel(Class<T> clz);
     //获取指定的ViewModel
     <T extends BaseViewModel> T getViewModel(Class<T> clz,IBaseView iBaseView);
+
 }

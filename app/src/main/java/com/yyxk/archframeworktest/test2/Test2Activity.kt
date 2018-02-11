@@ -1,7 +1,9 @@
-package com.yyxk.architectureframework.center.data;
+package com.yyxk.archframeworktest.test2
 
-import android.os.Handler;
-import android.os.Looper;
+import android.os.Bundle
+import com.yyxk.archframeworktest.R
+import com.yyxk.architectureframework.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_test2.*
 
 /**
  * ----------Dragon be here!----------/
@@ -24,29 +26,31 @@ import android.os.Looper;
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
  * 项目名称：ArchFrameworkTest
- * 包名:com.yyxk.architectureframework.center.data
- * 类描述：切换到主线程
+ * 包名:com.yyxk.archframeworktest.test2
+ * 类描述：
  * 创建人：LX
- * 创建时间：2018/1/17 下午1:57
+ * 创建时间：2018/2/5 上午10:42
  * 修改人：LX
- * 修改时间：2018/1/17 下午1:57
+ * 修改时间：2018/2/5 上午10:42
  * 修改备注：
  */
+class Test2Activity:BaseActivity(){
+    lateinit var mViewModel:Contract
 
-public class DataTaskExcuter{
-    private static DataTaskExcuter mDataTaskExcuter;
-    private Handler mHandler=new Handler(Looper.getMainLooper());
-
-    private DataTaskExcuter() {
+    override fun setLayoutId(): Int {
+        return R.layout.activity_test2
     }
 
-    public static DataTaskExcuter getInstance(){
-        if(mDataTaskExcuter==null)
-            mDataTaskExcuter=new DataTaskExcuter();
-        return mDataTaskExcuter;
+    override fun setPageName(): String {
+        return "Test2Activity"
     }
 
-    public void postToMainThread(Runnable runnable){
-        mHandler.post(runnable);
+    override fun init(savedInstanceState: Bundle?) {
+        mViewModel=getViewModel(Test2ViewModel::class.java)
+        mViewModel.setActivity(this)
+        button3.setOnClickListener {
+            mViewModel.onButtonClick()
+        }
     }
+
 }

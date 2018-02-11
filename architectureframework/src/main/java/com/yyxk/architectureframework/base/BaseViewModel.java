@@ -5,6 +5,9 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ViewModel;
 
+import com.yyxk.architectureframework.center.manager.ViewModelManager;
+import com.yyxk.architectureframework.ibase.IBaseView;
+
 /**
  * ----------Dragon be here!----------/
  * 　　　┏┓　　　┏┓
@@ -37,6 +40,13 @@ import android.arch.lifecycle.ViewModel;
 
 public abstract class BaseViewModel extends ViewModel implements GenericLifecycleObserver{
     public boolean isActive;//判断ViewModel是否活动
+    private IBaseView mIBaseView;
+
+    public abstract void onViewStateChanged(LifecycleOwner source, Lifecycle.Event event);
+
+    public BaseViewModel() {
+        ViewModelManager.getInstance().push(this);
+    }
 
     /**
      * 监听View生命周期
@@ -57,7 +67,18 @@ public abstract class BaseViewModel extends ViewModel implements GenericLifecycl
         }
     }
 
-    public abstract void onViewStateChanged(LifecycleOwner source, Lifecycle.Event event);
+    @Override
+    protected void onCleared() {
+        ViewModelManager.getInstance().remove(this);
+        super.onCleared();
+    }
 
+    public <T extends IBaseView> T getBandedView(Class<T> clz){
+        return (T) mIBaseView;
+    }
+
+    public void setIBaseView(IBaseView iBaseView){
+        mIBaseView=iBaseView;
+    }
 
 }

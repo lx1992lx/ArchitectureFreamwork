@@ -1,7 +1,10 @@
-package com.yyxk.architectureframework.center.data;
+package com.yyxk.archframeworktest.test2
 
-import android.os.Handler;
-import android.os.Looper;
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleOwner
+import com.yyxk.archframeworktest.text1.Test1ViewModel
+import com.yyxk.architectureframework.base.BaseViewModel
+import com.yyxk.architectureframework.center.message.MessageCenter
 
 /**
  * ----------Dragon be here!----------/
@@ -24,29 +27,30 @@ import android.os.Looper;
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
  * 项目名称：ArchFrameworkTest
- * 包名:com.yyxk.architectureframework.center.data
- * 类描述：切换到主线程
+ * 包名:com.yyxk.archframeworktest.test2
+ * 类描述：
  * 创建人：LX
- * 创建时间：2018/1/17 下午1:57
+ * 创建时间：2018/2/5 下午2:23
  * 修改人：LX
- * 修改时间：2018/1/17 下午1:57
+ * 修改时间：2018/2/5 下午2:23
  * 修改备注：
  */
+class Test2ViewModel:BaseViewModel(),Contract{
+    private lateinit var mActivity:Test2Activity
 
-public class DataTaskExcuter{
-    private static DataTaskExcuter mDataTaskExcuter;
-    private Handler mHandler=new Handler(Looper.getMainLooper());
-
-    private DataTaskExcuter() {
+    override fun setActivity(activity: Test2Activity) {
+        mActivity=activity
     }
 
-    public static DataTaskExcuter getInstance(){
-        if(mDataTaskExcuter==null)
-            mDataTaskExcuter=new DataTaskExcuter();
-        return mDataTaskExcuter;
+    override fun onButtonClick() {
+        MessageCenter.getInstance().sendMsg("2222", Test1ViewModel::class.java,"a")
+        mActivity.finish()
     }
 
-    public void postToMainThread(Runnable runnable){
-        mHandler.post(runnable);
+    override fun onViewStateChanged(source: LifecycleOwner?, event: Lifecycle.Event?) {
+
     }
+
+
+
 }

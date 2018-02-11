@@ -1,5 +1,7 @@
 package com.yyxk.archframeworktest.text1
 
+import android.content.Context
+
 /**
  * ----------Dragon be here!----------/
  * 　　　┏┓　　　┏┓
@@ -37,4 +39,6 @@ interface Contract {
     fun onInvokeClicked()//当发送事件时
 
     fun onThreadClicked()//线程
+
+    fun setContext(context:Context?)
 }

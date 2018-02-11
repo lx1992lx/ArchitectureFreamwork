@@ -7,5 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="CustomToastAnim">
+        <item name="android:windowEnterAnimation">@anim/toast_drop_down</item>
+        <item name="android:windowExitAnimation">@anim/toast_drop_up</item>
+    </style>
+    <style name="CustomViewToastAnim">
+        <item name="android:windowExitAnimation">@anim/toast_drop_up</item>
+    </style>
 </resources>
